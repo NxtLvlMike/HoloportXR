@@ -1,10 +1,84 @@
-body {
-      font-family: Arial, sans-serif;
+/* Font Import */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+    /* Base Settings */
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #2a2a2a, #121212); /* Metallic grey gradient */
+      color: #e0e0e0;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f0f0;
+    }
+
+    /* Header Styles */
+    .header_contents h1 {
+      font-size: 3em;
+      font-weight: 600;
+      color: #00d4ff;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+      border-bottom: 3px solid #00d4ff; /* Blue border for h1 */
+      padding-bottom: 0.5em;
+    }
+
+    /* General Typography */
+    h1, h2, p, li, label {
+      color: #f5f5f5;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    h1 {
+      font-size: 2.5em;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 2em;
+      font-weight: 500;
+      border-bottom: 2px solid #00d4ff; /* Blue border under h2 */
+      padding-bottom: 0.3em;
+    }
+    p, li, label {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    /* Links */
+    a, a:hover, a:active, a:focus {
+      color: #00d4ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #76c7c0;
+    }
+
+    /* Buttons */
+    .btn, button {
+      background-color: #00d4ff;
+      color: #121212;
+      border: 2px solid #00d4ff;
+      padding: 0.7em 1.5em;
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px rgba(0, 212, 255, 0.3);
+    }
+    button:hover, .btn:hover {
+      background-color: #76c7c0;
+      border-color: #76c7c0;
+      color: #fff;
+    }
+
+    /* Navigation */
+    #mainNav {
+      background: rgba(0, 0, 0, 0.8);
+      border-bottom: 2px solid #00d4ff; /* Blue border for nav */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-nav>li>a {
+      color: #e0e0e0;
+      padding: 1em;
     }

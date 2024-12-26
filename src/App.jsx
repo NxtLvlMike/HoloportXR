@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
     import QRCode from 'qrcode.react';
+    import PreviewDashboard from './PreviewDashboard';
+    import './index.css';
 
     function App() {
       const [glbFile, setGlbFile] = useState(null);
@@ -9,6 +11,12 @@ import React, { useState } from 'react';
       const [animation, setAnimation] = useState('Idle');
       const [qrCodeValue, setQrCodeValue] = useState('');
       const [gpsLocation, setGpsLocation] = useState({ latitude: '', longitude: '' });
+      const [photoFile, setPhotoFile] = useState(null);
+      const [characterSettings, setCharacterSettings] = useState({
+        position: { x: 0, y: 0, z: 0 },
+        orientation: { x: 0, y: 0, z: 0 },
+        size: 1,
+      });
 
       const handleGlbUpload = (event) => {
         setGlbFile(event.target.files[0]);
@@ -35,12 +43,28 @@ import React, { useState } from 'react';
         setGpsLocation((prev) => ({ ...prev, [name]: value }));
       };
 
+      const handlePhotoUpload = (event) => {
+        setPhotoFile(event.target.files[0]);
+      };
+
+      const handleCharacterSettingsChange = (event) => {
+        const { name, value } = event.target;
+        const [key, subKey] = name.split('.');
+        setCharacterSettings((prev) => ({
+          ...prev,
+          [key]: {
+            ...prev[key],
+            [subKey]: parseFloat(value),
+          },
+        }));
+      };
+
       const generateQrCode = () => {
         setQrCodeValue('https://example.com/character/' + Date.now());
       };
 
       return (
-        <div style={{ padding: '20px' }}>
+        <div style={{ padding: '20px', maxHeight: '100vh', overflowY: 'auto' }}>
           <h1>Welcome to Holoport XR</h1>
           <div style={{ marginBottom: '20px' }}>
             <h2>Import Your Avatar</h2>
@@ -100,8 +124,80 @@ import React, { useState } from 'react';
             />
           </div>
           <div style={{ marginBottom: '20px' }}>
-            <h2>WebAR Integration</h2>
-            <p>WebAR feature coming soon...</p>
+            <h2>Upload Photo for Vision Positioning</h2>
+            <input type="file" accept="image/*" onChange={handlePhotoUpload} />
+            {photoFile && <p>Uploaded: {photoFile.name}</p>}
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <h2>Character Settings</h2>
+            <label>
+              Position X:
+              <input
+                type="number"
+                name="position.x"
+                value={characterSettings.position.x}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Position Y:
+              <input
+                type="number"
+                name="position.y"
+                value={characterSettings.position.y}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Position Z:
+              <input
+                type="number"
+                name="position.z"
+                value={characterSettings.position.z}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Orientation X:
+              <input
+                type="number"
+                name="orientation.x"
+                value={characterSettings.orientation.x}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Orientation Y:
+              <input
+                type="number"
+                name="orientation.y"
+                value={characterSettings.orientation.y}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Orientation Z:
+              <input
+                type="number"
+                name="orientation.z"
+                value={characterSettings.orientation.z}
+                onChange={handleCharacterSettingsChange}
+              />
+            </label>
+            <label>
+              Size:
+              <input
+                type="number"
+                name="size"
+                value={characterSettings.size}
+                onChange={handleCharacterSettingsChange}
+                step="0.1"
+              />
+            </label>
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <h2>Preview Dashboard</h2>
+            <PreviewDashboard characterSettings={characterSettings} />
           </div>
         </div>
       );
