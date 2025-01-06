@@ -1,0 +1,16 @@
+react 18.0.0 https://www.npmjs.com/package/react
+
+react-dom 18.0.0 https://www.npmjs.com/package/react-dom
+
+react-scripts 4.0.0 https://www.npmjs.com/package/react-scripts
+
+framer-motion latest https://www.npmjs.com/package/framer-motion
+
+react-router-dom latest https://www.npmjs.com/package/react-router-dom
+
+lucide-react latest https://www.npmjs.com/package/lucide-react
+
+react-helmet latest https://www.npmjs.com/package/react-helmet
+
+
+
